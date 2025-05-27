@@ -2,6 +2,10 @@
 
 A Spring Boot-based web application for managing employee data. The system allows you to add, update, delete, and view employees via both HTML views and RESTful APIs. It also includes integrated Swagger documentation for easy API testing.
 
+How the application works:
+
+Check it out in this link - https://drive.google.com/file/d/1EYr4rVNnXKf_7c12iI21RaptLMMkfD_9/view?usp=sharing
+
 ---
 
 ## 🔧 Tech Stack
