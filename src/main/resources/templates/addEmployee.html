@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Required for responsiveness -->
+    <title>Add Employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+    <span th:text="${errorMessage}"></span>
+</div>
+<div th:if="${successMessage}" class="alert alert-success" role="alert">
+    <span th:text="${successMessage}"></span>
+</div>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="w-100" style="max-width: 500px;">
+        <!-- Error message -->
+        <div th:if="${errorMessage}" class="alert alert-danger text-center">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <!-- Card Form -->
+        <div class="card shadow p-4">
+            <h3 class="text-center mb-4">Add Employee</h3>
+
+            <form th:action="@{/addEmployee}" th:object="${employeeEntity}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">First Name</label>
+                    <input type="text" th:field="*{EmployeeFirstName}" class="form-control" placeholder="Enter first name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" th:field="*{EmployeeLastName}" class="form-control" placeholder="Enter last name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email ID</label>
+                    <input type="email" th:field="*{EmployeeEmailId}" class="form-control" placeholder="Enter email address" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Add Employee</button>
+            </form>
+
+            <div class="text-center mt-3">
+                <a href="/employees" class="btn btn-link">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

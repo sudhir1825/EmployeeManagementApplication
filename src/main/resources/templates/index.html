@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Important for responsiveness -->
+    <title>Developed By Sudhir</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+    <span th:text="${errorMessage}"></span>
+</div>
+<div th:if="${successMessage}" class="alert alert-success" role="alert">
+    <span th:text="${successMessage}"></span>
+</div>
+<div class="container py-5">
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">EMPLOYEE MANAGEMENT APPLICATION</h1>
+        <a href="/addEmployee" class="btn btn-outline-primary btn-lg mt-3">Add Employee</a>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped align-middle text-center">
+            <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email ID</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employeeEntity : ${employeeEntity}">
+                <td th:text="${employeeEntity.EmployeeFirstName}">FirstName</td>
+                <td th:text="${employeeEntity.EmployeeLastName}">LastName</td>
+                <td th:text="${employeeEntity.EmployeeEmailId}">EmailId</td>
+                <td>
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <!-- Delete Form -->
+                        <form th:action="@{/employees/delete/{id}(id=${employeeEntity.id})}" method="post" class="m-0">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+
+                        <!-- View Button -->
+                        <a th:href="@{/employees/view/{id}(id=${employeeEntity.id})}" class="btn btn-success btn-sm">View</a>
+
+                        <!-- Update Button -->
+                        <a th:href="@{/employees/update/{id}(id=${employeeEntity.id})}" class="btn btn-warning btn-sm">Update</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
